@@ -8,7 +8,7 @@
         var wrap_bar     = $('<div />').addClass('jbar jbar-top').css("cursor", "pointer");
 
     if (o.type == 'error') {
-          wrap_bar.css({"color": "#D8000C"})
+          wrap_bar.css({"color": "#00529B"})
         };
 
         wrap_bar.click(function(){
