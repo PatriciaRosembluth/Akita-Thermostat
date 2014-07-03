@@ -49,14 +49,19 @@ end
   # POST /thermostats
   # POST /thermostats.json
   def alarm
-    @last_history = HistoryThermostat.last
-    @alarm = @last_history.thermostat.location.alarm
-    if   @alarm != nil
-     if @last_history.temperature > @alarm.temp_max || @last_history.temperature < @alarm.temp_min
-      flash[:notice] = "alarm wrong temperature"
+    @history_thermostats = HistoryThermostat.all
+    @thermostat = Thermostat.find(params[:id])
+    @history_thermostats = @thermostat.history_thermostats
+    @last_history = @history_thermostats.last
+    if @last_history != nil
+      @alarm = @last_history.thermostat.location.alarm
+      if   @alarm != nil
+        if @last_history.temperature > @alarm.temp_max || @last_history.temperature < @alarm.temp_min
+          flash[:notice] = "Alarma!!"
+        end
+      end
     end
   end
-end
 
   def create
     @thermostat = Thermostat.new(thermostat_params)
@@ -71,9 +76,6 @@ end
       if @thermostat.save
         format.html { redirect_to @thermostat, notice: 'El termostato fue creado satisfactoriamente.' }
         format.json { render action: 'show', status: :created, location: @thermostat }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @thermostat.errors, status: :unprocessable_entity }
       end
     end
   end

@@ -1,19 +1,19 @@
 <h2>Ingresar</h2>
 
-<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
-  <p><%= f.label :login, "Nombre de usuario" %><br />
-     <%= f.text_field :login %></p>
+	<%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+	  <p><%= f.label :login, "Nombre de usuario" %><br />
+	     <%= f.text_field :login %></p>
 
-  <div><%= f.label :password, "Contraseña" %><br />
-    <%= f.password_field :password, autocomplete: "off" %></div>
+	  <div><%= f.label :password, "Contraseña" %><br />
+	    <%= f.password_field :password, autocomplete: "off" %></div>
 
-  <% if devise_mapping.rememberable? -%>
-    <div><%= f.check_box :remember_me %> <%= f.label :remember_me, "Recordarme" %></div>
-  <% end -%>
-  
-    <div><%= f.submit "Ingresar" %></div>
-  
-  <br><br>
-<% end %>
+	  <% if devise_mapping.rememberable? -%>
+	    <div><%= f.check_box :remember_me %> <%= f.label :remember_me, "Recordarme" %></div>
+	  <% end -%>
+	  
+	    <div><%= f.submit "Ingresar" %></div>
+	  
+	  <br><br>
+	<% end %>
 
-<%= render "devise/shared/links" %>
+	<%= render "devise/shared/links" %>

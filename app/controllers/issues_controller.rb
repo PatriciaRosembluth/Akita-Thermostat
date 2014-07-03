@@ -3,6 +3,7 @@
 class IssuesController < ApplicationController
 
   before_action :set_issue, only: [:change_status, :open,  :show, :edit, :update, :destroy]
+  #respond_to :js, only: :change_status
 
   # GET /issues
   # GET /issues.json
@@ -21,8 +22,8 @@ class IssuesController < ApplicationController
 
   def change_status
     @issue.change_status
-      respond_to do |format|
-      format.html { redirect_to "/issues/history/"+ @issue.thermostat.id.to_s}
+    respond_to do |format|
+      format.html { redirect_to "/issues/history/" + @issue.thermostat_id.to_s }
       format.json { head :no_content }
     end
   end

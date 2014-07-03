@@ -52,17 +52,10 @@ class HistoryThermostatsController < ApplicationController
     @history_thermostat.consumoN = params[:thermostat_history][:consumoN]
     @history_thermostat.consumoA = params[:thermostat_history][:consumoA]
     @history_thermostat.ahorro = @history_thermostat.consumoA - @history_thermostat.consumoN
-    
-
-
     respond_to do |format|
       if @history_thermostat.save
-         alarm
-        format.html { redirect_to @history_thermostat, notice: 'History thermostat was successfully created.' }
+        format.html { redirect_to @history_thermostat, notice: 'Historial de termostato creado exitosamente' }
         format.json { render action: 'show', status: :created, location: @history_thermostat }
-      else
-        format.html { render action: 'new' }
-        format.json { render json: @history_thermostat.errors, status: :unprocessable_entity }
       end
     end
   end
